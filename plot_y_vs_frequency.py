@@ -31,7 +31,7 @@ def extract_x(filepath):
 
 
 
-filepath = 'c_gw_downlink_axial_ratio_RHCP.csv'
+filepath = ''
 ar = extract_y(filepath)
 f = extract_x(filepath)
 m,n=np.shape(ar)
@@ -49,10 +49,10 @@ plt.title(r'Axial Ratio (dB) vs. Frequency with $\theta_{scan}$=0,$75^{o}$')
 plt.legend((r'broadside','$\phi_{scan}$=$0^{o}$','$\phi_{scan}$=$45^{o}$','$\phi_{scan}$=$90^{o}$'
             ,'$\phi_{scan}$=$135^{o}$','$\phi_{scan}$=$180^{o}$','$\phi_{scan}$=$225^{o}$'
             ,'$\phi_{scan}$=$270^{o}$','$\phi_{scan}$=$315^{o}$'),loc='lower left')
-plt.savefig('c_gw_downlink_AR_vs_freq.png',dpi=150)
+plt.savefig('',dpi=150)
 
 
-filepath = 'c_gw_downlink_realized_gain_RHCP.csv'
+filepath = ''
 rg = extract_y(filepath)
 f = extract_x(filepath)
 m,n=np.shape(rg)
@@ -73,5 +73,5 @@ plt.title(r'Realized Gain RHCP (dB) vs. Frequency with $\theta_{scan}$=0,$75^{o}
 plt.legend((r'broadside','$\phi_{scan}$=$0^{o}$','$\phi_{scan}$=$45^{o}$','$\phi_{scan}$=$90^{o}$'
             ,'$\phi_{scan}$=$135^{o}$','$\phi_{scan}$=$180^{o}$','$\phi_{scan}$=$225^{o}$'
             ,'$\phi_{scan}$=$270^{o}$','$\phi_{scan}$=$315^{o}$','link budget spec.'),loc='lower left')
-plt.savefig('c_gw_downlink_rgrhcp_vs_freq.png',dpi=150)
+plt.savefig('',dpi=150)
 

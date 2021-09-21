@@ -34,7 +34,7 @@ ar=1000*np.ones((num_elevation_plane,num_scan_theta))
 fig, ax = plt.subplots()
 legend_list=[]
 for i in range(num_elevation_plane):
-    filepath = 'c_gw_downlink_axial_ratio_RHCP_phi'+str(scan_phi[i])+'.csv'
+    filepath = ''+str(scan_phi[i])+'.csv'
     scan_theta = extract_x(filepath)
     ar[i,:] = extract_y(filepath)
     plt.plot(scan_theta, ar[i,:])
@@ -47,13 +47,13 @@ plt.grid()
 plt.xlabel('scan theta (degree)')
 plt.ylabel('axial ratio (dB)')
 plt.title('Axial Ratio (dB) vs. Scan Angle')
-plt.savefig("axial_ratio_vs_scan_angle.png", dpi=150)
+plt.savefig("", dpi=150)
 
 rg=0*np.ones((num_elevation_plane,num_scan_theta))
 fig, ax = plt.subplots()
 legend_list=[]
 for i in range(num_elevation_plane):
-    filepath = 'c_gw_downlink_realized_gain_RHCP_phi'+str(scan_phi[i])+'.csv'
+    filepath = ''+str(scan_phi[i])+'.csv'
     scan_theta = extract_x(filepath)
     rg[i,:] = extract_y(filepath)
     plt.plot(scan_theta, rg[i,:])
@@ -70,61 +70,9 @@ plt.grid()
 plt.xlabel('$\\theta_{scan}$ (degree)')
 plt.ylabel('realized $gain_{RHCP}$ (dB)')
 plt.title('Realized $Gain_{RHCP}$ (dB) vs. Scan Angle')
-plt.savefig("realized_gain_lhcp_vs_scan_angle.png", dpi=150)
+plt.savefig("", dpi=150)
 
 
 
 
 
-# filepath = 'd1_opted_210908_rlhcp_phi0.csv'
-# rlhcp0 = extract_y(filepath)
-
-# filepath = 'd1_opted_210908_rtotal_phi0.csv'
-# rtotal0 = extract_y(filepath)
-# l = len(rtotal0)
-# rworst0 = []
-# for i in range(l):
-#     wg = rtotal0[i] - 10*log10(1+10**(ar0[i]/10))
-#     rworst0.append(wg)
-
-
-# ####################################################################
-# fig, ax = plt.subplots()
-# plt.plot(scan_theta, ar0)
-# plt.legend(('phi=0',),loc='lower left')
-# plt.xlim([0, 60])
-# plt.ylim([0,9])
-# plt.grid()
-# plt.xlabel('scan theta (degree)')
-# plt.ylabel('axial ratio (dB)')
-# plt.title('Axial Ratio (dB) vs. Scan Angle')
-# plt.savefig("axial_ratio_vs_scan_angle.png", dpi=150)
-
-# spec_theta = np.linspace(0,60,num=61)
-# spec_rlhcp = 4+1.3*10*np.log10(np.cos(spec_theta/180*pi))
-# fig, ax = plt.subplots()
-# plt.plot(scan_theta, rlhcp0)
-# plt.plot(spec_theta, spec_rlhcp, 'k--')
-# plt.legend(('phi=0','gain spec'),loc='lower left')
-# plt.xlim([0, 60])
-# plt.ylim([0,5])
-# plt.grid()
-# plt.xlabel('scan theta (degree)')
-# plt.ylabel('realized LHCP gain (dB)')
-# plt.title('Realized LHCP Gain (dB) vs. Scan Angle')
-# plt.savefig("realized_lhcp_vs_scan_angle.png", dpi=150)
-
-
-# spec_theta = np.linspace(0,60,num=61)
-# spec_rlhcp = 4+1.3*10*np.log10(np.cos(spec_theta/180*pi))-3
-# fig, ax = plt.subplots()
-# plt.plot(scan_theta, rworst0)
-# plt.plot(spec_theta, spec_rlhcp, 'k--')
-# plt.legend(('phi=0','gain spec (assuming Tx. AR=0)'),loc='lower left')
-# plt.xlim([0, 60])
-# plt.ylim([-5,2])
-# plt.grid()
-# plt.xlabel('scan theta (degree)')
-# plt.ylabel('worst gain seen by iPhone (dB)')
-# plt.title('Realized Worst Gain (dB) vs. Scan Angle')
-# plt.savefig("realized_worst_gain_vs_scan_angle.png", dpi=150)
