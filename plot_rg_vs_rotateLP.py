@@ -16,7 +16,7 @@ def extract_y(filepath,sample_freq):
     data_input = pd.read_csv(filepath).to_numpy()
     x = data_input[:,0]
     freq_pos = int(np.where(x == 2.49)[0])
-    y = data_input[5,2:]
+    y = data_input[freq_pos,2:]
     # for i in range(m):
     #     for j in range(1,n):
     #         y[i,j-1]=data_input[i,j]
