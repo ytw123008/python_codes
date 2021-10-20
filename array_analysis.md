@@ -2,14 +2,12 @@
 
 The general array configuration is shown in the figure below. 
 
+![array_with_coordinates](E:\Apple\publication\multiband_array\python_codes\array_with_coordinates.png)
 
-![](https://latex.codecogs.com/svg.latex?\Large&space;x_{mn}=mb;y_{mn}=na+\frac{mb}{\tan\gamma};r_{mn}\approx{r-\hat{r}\cdot\vec{\rho}_{mn}})
-
+$$
+x_{mn}=mb;\space y_{mn}=na+\frac{mb}{\tan\gamma};\space r_{mn}\approx r-\hat{r}\cdot\vec{\rho}_{mn}
+$$
 where
-
-![](https://latex.codecogs.com/svg.latex?\Large&space;\hat{r}=\hat{x}\sin\theta\cos\phi+\hat{y}\sin\theta\sin\phi+\hat{z}\cos\theta)
-
-![](https://latex.codecogs.com/svg.latex?\Large&space;\vec{\rho}_{mn}=\hat{x}x_{mn}+\hat{y}y_{mn})
 
 $$
 \hat{r}=\hat{x}\sin\theta\cos\phi+\hat{y}\sin\theta\sin\phi+\hat{z}\cos\theta\\
