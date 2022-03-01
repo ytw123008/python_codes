@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <!-- add title -->
+    
+    <!-- import required libraries here -->
+    
+    <style>
+        /* define CSS rules here */
+    </style>
+
+    <title></title>
+
+</head>
+
+<body>
+    <script type="text/javascript" src="../lib/d3.v5.min.js"></script>
+    <script type="text/javascript" src="../lib/d3-tip.min.js"></script>
+    <!-- Initialize a select button -->
+    <select id="sectordropDown"></select>
+    <select id="companydropDown"></select> 
+    <!-- Add heading for the visualization -->
+    
+    <!-- Create dropdown element here. Options should be added after reading in game file, they should not be created here.-->
+    
+    <!-- append visualization svg to this div-->
+    <!-- <div id="choropleth"></div> -->
+
+    <script>
+        // enter code to define margin and dimensions for svg
+        var margin = {top: 50, right: 50, bottom: 50, left: 50}
+        , width = window.innerWidth - margin.left - margin.right // Use the window's width 
+        , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
+
+        // enter code to create svg
+        var svg= d3.select('body')
+                   .append('svg')
+                   .attr('width', width)
+                   .attr('height', height)
+                   .attr("id", "stockplots");
+
+        // import data
+        var pathToCsv = "SP500.csv";
+        d3.dsv(",", pathToCsv, function (d) {
+            return {
+                // format data attributes if required
+                comp_symbol: d.Symbol,
+                comp_name: d.Security,
+                comp_sector: d["GICS Sector"],
+                comp_location: d["Headquarters Location"],
+            }
+        }).then(function (data) {
+            console.log(data); // you should see the data in your browser's developer tools console
+            var data_SP500 = data;
+            console.log("data_SP500 is: \n", data_SP500)
+            var unique_sector = d3.nest().key(function (d) { return d.comp_sector; }).entries(data_SP500);
+            console.log("unique sector is: \n", unique_sector);
+            var sector_list = [];
+            unique_sector.forEach(element => {sector_list.push(element.key)});
+            var company_list = [];
+            data_SP500.forEach(element => {company_list.push(element.comp_name)})
+            console.log("compamy list is: \n", company_list);
+
+
+            //------------------------------------------------------- Create Dropdown List -------------------------------------------
+            var button1 = d3.select("#sectordropDown")
+                .selectAll('myOptions')
+                .data(sector_list)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text showed in the menu
+                .style("left", "10px")
+                d3.select("#sectordropDown").on("change", filter_company);
+
+                function filter_company() {
+                    console.log("sector button clicked!")
+                    var s_name = sector_list[this.selectedIndex]
+                    console.log("selected sector is: ", s_name)
+                    sectored_company = [];
+                    for (i = 0; i < unique_sector.length; i++) {
+                        if (s_name == unique_sector[i].key) {
+                            for (j = 0; j < unique_sector[i].values.length; j++) {
+                                sectored_company.push(unique_sector[i].values[j].comp_name)
+                                // console.log(unique_sector[i].values[j].comp_name)
+                            };
+                        };
+                    };
+                    console.log("sectored companies are: \n", sectored_company)
+                    button2.remove();
+                    d3.select("#companydropDown").selectAll('myOptions_comp_name').data(sectored_company).enter().append('option').text(function (d) { return d; }) // text showed in the menu
+                };
+
+                var button2 = d3.select("#companydropDown")
+                .selectAll('myOptions_comp_name')
+                .data(company_list)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text showed in the menu
+                .style("left", "10px")
+                
+            
+
+        });
+
+        
+        
+        
+    
+    
+    </script>
+
+</body>
